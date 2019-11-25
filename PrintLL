@@ -1,0 +1,99 @@
+package com.JavaPractice.LL;
+
+import java.util.Scanner;
+
+/*Print,Inserting at head/tail,Delete the elements of LL*/
+public class PrintLL {
+	static class SingleLLNode {
+		public int data;
+		public SingleLLNode next;
+
+		public SingleLLNode(int NodeData) {
+			this.data = NodeData;
+			this.next = null;
+		}
+
+	}
+
+	static class SingleLL {
+		public SingleLLNode head;
+		public SingleLLNode tail;
+
+		public SingleLL() {
+			this.head = null;
+			this.tail = null;
+		}
+		// Insert the nodes to the LL
+
+		public void insertNode(int data) {
+			SingleLLNode node = new SingleLLNode(data);
+			if (this.head == null) {
+				this.head = node;
+			} else {
+				this.tail.next = node;
+			}
+			this.tail = node;
+		}
+
+		// Insert the node at the head in LL
+
+		public void insertNodeAtFirst(int data) {
+			SingleLLNode node = new SingleLLNode(data);
+			if (this.head != null) {
+				node.next = head;
+				this.head = node;
+
+			} else {
+				this.head = node;
+			}
+
+		}
+
+	}
+
+	static SingleLLNode insertNodeAtTail(SingleLLNode head, int data) {
+		SingleLLNode node = new SingleLLNode(data);
+		
+		if (head == null) {
+			head = node;
+		} else {
+			SingleLLNode temp = head;
+			if(temp.next!=null) {
+				temp=temp.next;
+			}
+			
+				temp=node;
+				head.next=temp;
+			
+		}
+		
+		return head;
+
+	}
+
+	public static void printSingleLL(SingleLLNode head) {
+		SingleLLNode node = head;
+		while (node != null) {
+			System.out.print(node.data + " ");
+			node = node.next;
+		}
+
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		SingleLL list = new SingleLL();
+		int listSize = sc.nextInt();
+
+		for (int i = 0; i < listSize; i++) {
+			int item = sc.nextInt();
+			// list.insertNode(item);
+			// list.insertNodeAtFirst(item);
+			SingleLLNode llist_head = insertNodeAtTail(list.head, item);
+			list.head = llist_head;
+
+		}
+		printSingleLL(list.head);
+	}
+
+}
